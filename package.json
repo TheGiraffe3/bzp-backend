@@ -1,0 +1,25 @@
+{
+  "name": "bzp-backend",
+  "version": "1.0.0",
+  "description": "BZP Backend",
+  "license": "MIT",
+  "author": "Loymdayddaud",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "multer": "^2.4.0",
+    "pocketbase": "^0.28.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
+  }
+}
