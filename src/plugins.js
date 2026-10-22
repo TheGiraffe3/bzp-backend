@@ -14,7 +14,6 @@ export const addPlugin = async (req, res) => {
 		const formData = new FormData();
 
 		const c = req.body.category;
-		console.log(c);
 		if (c !== "flags" && c !== "game-mode" && c !== "zones" && c !== "administration" && c !== "server"
 			&& c !== "chat" && c !== "game-mode-mechanics" && c !== "commands" && c !== "mechanics"
 			&& c !== "samples" && c !== "flag-mechanics" && c !== "out-of-date") {
@@ -71,6 +70,7 @@ export const listPlugins = async (req, res) => {
 	try {
 		const resultList = await pb.collection('plugins').getList(1, 1000, {
 			fields: 'id,name,author,description,category,approved',
+			sort: 'name',
 		});
 		res.json(resultList);
 	} catch (error) {
