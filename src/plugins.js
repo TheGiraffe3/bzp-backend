@@ -58,9 +58,13 @@ export const getPluginDownload = async (req, res) => {
 		if (!record.source_code || record.source_code.length === 0) {
 			return res.status(404).json({ message: 'There is no downloadable file for this plugin!' });
 		}
-		const firstFilename = record.source_code;
-		const url = pb.files.getURL(record, firstFilename, {'download': '1'});
-		res.json(url);
+		const filename = record.source_code;
+		const url = pb.files.getURL(record, filename, {'download': '1'});
+		const response = await fetch(url);
+		const fileBuffer = Buffer.from(await response.arrayBuffer());
+		res.setHeader('Content-Type', 'application/zip');
+		res.attachment(filename);
+		res.send(fileBuffer);
 	} catch (error) {
 		res.status(500).json({ message: 'Failed to get plugin: ', error: error.message });
 	}
