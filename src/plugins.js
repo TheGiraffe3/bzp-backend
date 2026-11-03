@@ -48,10 +48,11 @@ export const addPlugin = async (req, res) => {
 		if (providedDownloadLink == false) {
 			const pluginID = plugin.id;
 
-			const origin = req.headers.origin;
+			// If you're running your own copy of BZP, change this URL.
+			const URL = "https://bzp.sandybees.com/plugin/download?id=" + pluginID;
 
 			await pb.collection('plugins').update(pluginID, {
-				direct_download_link: origin + "/plugin/download?id=" + pluginID,
+				direct_download_link: URL,
 			});
 		}
 
