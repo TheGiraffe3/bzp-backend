@@ -98,7 +98,7 @@ export const getPluginDownload = async (req, res) => {
 
 export const listPlugins = async (req, res) => {
 	try {
-		const resultList = await pb.collection('plugins').getList(1, 1000, {
+		const resultList = await pb.collection('plugins').getFullList({
 			fields: 'id,name,author,description,category,approved',
 			sort: 'name',
 		});
